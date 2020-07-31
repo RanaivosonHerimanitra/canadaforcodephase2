@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <button (click)="getLastRecall()">Get Last 15 recalls</button>
+  </div>
+  <div class="row">
+    <div class="col-4" *ngFor="let category of ['ALL', 'FOOD', 'HEALTH', 'CPS', 'VEHICLE']">
+      <div class="card">
+        <div class="card-header">
+          {{ category }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <ul class="card-text" *ngFor="let element of data['results'][category]">
+            <li>
+              <a href="https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en/{{element.url}}">{{ element.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <pre>{{ data | json }}</pre>
+</div>
