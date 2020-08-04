@@ -1,3 +1,4 @@
+import { RecallSearchComponent } from './components/recall-search/recall-search.component';
 import { LastRecallDetailsComponent } from './components/last-recall-details/last-recall-details.component';
 import { TopMostRecallComponent } from './components/top-most-recall/top-most-recall.component';
 import { LastRecallComponent } from './components/last-recall/last-recall.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'viz',
     component: VisualizationComponent
+  },
+  {
+    path: 'search-recall',
+    component: RecallSearchComponent
   },
   {
     path: 'top-most-recall/:id',

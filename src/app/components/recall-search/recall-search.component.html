@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row center-row">
+    <input type="text" class="btn btn-lg" [(ngModel)]="searchKeyWord" (ngModelChange)="searchParams.search=$event;" placeholder="Search a recall...">
+    <mat-form-field appearance="fill">
+      <mat-label>Select a category</mat-label>
+      <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchParams.cat=$event;">
+        <div *ngFor="let category of categories">
+          <mat-option value="{{category.label}}">{{category.label}}</mat-option>
+        </div>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Select a language</mat-label>
+      <mat-select [(ngModel)]="selectedLang" (ngModelChange)="searchParams.lang=$event;">
+        <mat-option value="en">English</mat-option>
+        <mat-option value="fr">French</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-icon-button color="warn" aria-label="" (click)="doSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <div class="row center-row">
+   waiting you to launch search for {{searchKeyWord}}...
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 export const LATEST_RECALL = 'https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en';
@@ -45,15 +45,19 @@ export interface HealthRecallDetail {
 export class LatestRecallService {
   constructor(private http: HttpClient) { }
 
-  /*public getBinarySearchResult(query: BinarySearchQuery) {
-    return this.http.post<BinarySearchResult>(LATEST_RECALL, query);
-  }*/
-
   public getLastHealthRecall(): Observable<HealthRecall> {
     return this.http.get<HealthRecall>(LATEST_RECALL);
   }
 
   public getRecallHealthDetail(recallID: string): Observable<HealthRecallDetail> {
     return this.http.get<HealthRecallDetail>(`${BASE_URL}${recallID}/en`);
+  }
+
+  public searchRecall(search: string, category: string, lang: string): Observable<HealthRecall> {
+    let params = new HttpParams();
+    params = params.append('search', search);
+    params = params.append('cat', category);
+    params = params.append('lan', lang);
+    return this.http.get<HealthRecall>(`${BASE_URL}search`, {params});
   }
 }
