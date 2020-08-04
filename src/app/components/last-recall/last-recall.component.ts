@@ -1,6 +1,7 @@
 import { HealthRecallContent, HealthRecall, LatestRecallService } from './../../services/latest-recall.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-last-recall',
@@ -10,21 +11,28 @@ import { Observable } from 'rxjs';
 export class LastRecallComponent implements OnInit {
   public lastRecall$: Observable<HealthRecall>;
   public data: HealthRecall;
-  constructor(private recallService: LatestRecallService) { }
+  public isLoading = false;
+  public readonly categories = ['ALL', 'FOOD', 'HEALTH', 'CPS', 'VEHICLE'];
+  constructor(private recallService: LatestRecallService, private router: Router) { }
 
   ngOnInit(): void {
     this.lastRecall$ = this.recallService.getLastHealthRecall();
   }
 
   getLastRecall(): void {
-    this.lastRecall$.subscribe(data => {
-      this.data = data;
+    this.isLoading = true;
+    this.lastRecall$.subscribe({
+      // simulation of a delay:
+      next: (data) => setTimeout(() => {
+        this.data = data;
+        this.isLoading = false;
+      }, 3000),
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('completed'),
     });
   }
 
-  // search for a specific item from the list
-  // usage of debounce
-  // code error NOT FOUND
-  // use shared directory
-  // usage gif loader during subscribe
+  getTopMostRecent(top: number): void {
+    this.router.navigate(['top-most-recall', 3]);
+  }
 }

@@ -1,3 +1,5 @@
+import { LastRecallDetailsComponent } from './components/last-recall-details/last-recall-details.component';
+import { TopMostRecallComponent } from './components/top-most-recall/top-most-recall.component';
 import { LastRecallComponent } from './components/last-recall/last-recall.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,8 +11,16 @@ const routes: Routes = [
     component: LastRecallComponent
   },
   {
+    path: 'last-recall-detail/:recallID',
+    component: LastRecallDetailsComponent
+  },
+  {
     path: 'viz',
     component: VisualizationComponent
+  },
+  {
+    path: 'top-most-recall/:id',
+    component: TopMostRecallComponent
   }
 ];
 

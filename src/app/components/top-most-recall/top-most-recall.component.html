@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-4" *ngFor="let category of categories">
+    <div class="card">
+      <div class="card-header">
+        {{ category }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">
+          <app-spinner *ngIf="isLoading"></app-spinner>
+        </h5>
+        <div *ngIf="data">
+          <ul class="card-text" *ngFor="let element of data[category]">
+            <li>
+              <a href="https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en/{{element.url}}">{{ element.date }} -- {{ element.title }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

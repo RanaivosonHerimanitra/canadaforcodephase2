@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header">
+          Date de début/publication: {{ data ? data.debut : ' ' }} to {{ data ? data.date : ' ' }}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ data ? data.title: ' ' }}
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <mat-table [dataSource]="panelDataSource" class="mat-elevation-z8">
+        <!-- Panel Column -->
+        <ng-container matColumnDef="panelName">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.panelName}} </mat-cell>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+        <!-- text Column -->
+        <ng-container matColumnDef="text">
+          <mat-header-cell *matHeaderCellDef> Content </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="panelColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: panelColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div>
+<!--<pre>{{ data | json }}</pre>-->

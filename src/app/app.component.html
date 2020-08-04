@@ -1,1 +1,30 @@
+<nav class="navbar navbar-expand-lg primary-color">
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Code for Canada</a>
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+      aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarelement">
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en/">API Link</a>
+          </li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+              <a (click)="openDropdownItem()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Some nice visualizations</a>
+              <div #navdrop class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" [routerLink]="['/']">Main page</a>
+                  <a class="dropdown-item" [routerLink]="['/viz']">Visualization Phase 1</a>
+              </div>
+          </li>
+
+      </ul>
+  </div>
+  <!-- Collapsible content -->
+</nav>
+
 <router-outlet></router-outlet>
