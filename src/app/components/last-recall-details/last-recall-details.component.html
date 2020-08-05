@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <div class="card">
+      <div class="card" *ngIf="data">
         <div class="card-header">
-          Date de début/publication: {{ data ? data.debut : ' ' }} to {{ data ? data.date : ' ' }}
+          Date de début/publication: {{data.debut}} to {{data.date}}
         </div>
         <div class="card-body">
           <h5 class="card-title">
-            {{ data ? data.title: ' ' }}
+            {{data.title}}
             <a href="{{data.url}}">More info...</a>
           </h5>
         </div>
