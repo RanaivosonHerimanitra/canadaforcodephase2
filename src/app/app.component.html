@@ -15,10 +15,11 @@
           <!-- Dropdown -->
           <li class="nav-item dropdown">
               <a (click)="openDropdownItem()" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Some nice visualizations</a>
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Components in this app</a>
               <div #navdrop class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" [routerLink]="['/']">Main page</a>
-                  <a class="dropdown-item" [routerLink]="['/viz']">Visualization Phase 1</a>
+                  <a class="dropdown-item" [routerLink]="['/top-most-recall/3']">Top 3 recent recalls</a>
+                  <a class="dropdown-item" [routerLink]="['/search-recall']">Search a recall</a>
               </div>
           </li>
 
