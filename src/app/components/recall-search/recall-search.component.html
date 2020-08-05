@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row center-row">
-    <input type="text" class="btn btn-lg" [(ngModel)]="searchKeyWord" (ngModelChange)="searchParams.search=$event;" placeholder="Search a recall...">
+    <input type="text" class="btn btn-lg" [(ngModel)]="searchKeyWord" (ngModelChange)="searchParams.search=$event;"
+      placeholder="Search a recall...">
     <mat-form-field appearance="fill">
       <mat-label>Select a category</mat-label>
       <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="searchParams.cat=$event;">
@@ -21,6 +22,36 @@
     </button>
   </div>
   <div class="row center-row">
-   waiting you to launch search for {{searchKeyWord}}...
+    waiting you to launch search for {{searchKeyWord}}...
+    <app-spinner *ngIf="isLoading"></app-spinner>
+    <div *ngIf="pageEvent">
+      <h5>Page Change Event Properties</h5>
+      <div>List length: {{pageEvent.length}}</div>
+      <div>Page size: {{pageEvent.pageSize}}</div>
+      <div>Page index: {{pageEvent.pageIndex}}</div>
+      <mat-table [dataSource]="searchResutData" class="mat-elevation-z8">
+        <!-- Panel Column -->
+        <ng-container matColumnDef="panelName">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.panelName}} </mat-cell>
+        </ng-container>
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+        <!-- text Column -->
+        <ng-container matColumnDef="text">
+          <mat-header-cell *matHeaderCellDef> Content </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="searchColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: searchColumns;"></mat-row>
+      </mat-table>
+    </div>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event">
+    </mat-paginator>
+    <pre>{{ searchResutData | json }}</pre>
   </div>
 </div>

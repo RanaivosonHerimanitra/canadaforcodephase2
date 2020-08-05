@@ -53,11 +53,11 @@ export class LatestRecallService {
     return this.http.get<HealthRecallDetail>(`${BASE_URL}${recallID}/en`);
   }
 
-  public searchRecall(search: string, category: string, lang: string): Observable<HealthRecall> {
+  public searchRecall(search: string, category: string, lang: string): Observable<HealthRecallContent> {
     let params = new HttpParams();
     params = params.append('search', search);
     params = params.append('cat', category);
     params = params.append('lan', lang);
-    return this.http.get<HealthRecall>(`${BASE_URL}search`, {params});
+    return this.http.get<HealthRecallContent>(`${BASE_URL}search`, {params});
   }
 }

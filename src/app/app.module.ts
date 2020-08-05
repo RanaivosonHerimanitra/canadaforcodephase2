@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppComponent } from './app.component';
 import { VisualizationComponent } from './components/visualization/visualization.component';
 import { LastRecallComponent } from './components/last-recall/last-recall.component';
@@ -33,7 +34,7 @@ import { RecallSearchComponent } from './components/recall-search/recall-search.
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule, MatTableModule, MatButtonModule, MatSelectModule, MatIconModule
+    MatFormFieldModule, MatTableModule, MatButtonModule, MatSelectModule, MatIconModule, MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
