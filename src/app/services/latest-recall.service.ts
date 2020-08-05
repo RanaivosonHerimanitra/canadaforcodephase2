@@ -10,6 +10,7 @@ export interface HealthRecallContent {
   category: string[];
   date_published: number;
   url: string;
+  department?: string;
   date?: string;
 }
 
@@ -53,11 +54,12 @@ export class LatestRecallService {
     return this.http.get<HealthRecallDetail>(`${BASE_URL}${recallID}/en`);
   }
 
-  public searchRecall(search: string, category: string, lang: string): Observable<HealthRecallContent> {
+  public searchRecall({...args}): Observable<HealthRecallContent> {
     let params = new HttpParams();
-    params = params.append('search', search);
-    params = params.append('cat', category);
-    params = params.append('lan', lang);
+    params = params.append('search', args.search);
+    params = params.append('cat', args.cat);
+    params = params.append('lan', args.lang);
+    params = params.append('off', args.offset);
     return this.http.get<HealthRecallContent>(`${BASE_URL}search`, {params});
   }
 }

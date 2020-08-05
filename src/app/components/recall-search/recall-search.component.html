@@ -22,36 +22,35 @@
     </button>
   </div>
   <div class="row center-row">
-    waiting you to launch search for {{searchKeyWord}}...
     <app-spinner *ngIf="isLoading"></app-spinner>
-    <div *ngIf="pageEvent">
-      <h5>Page Change Event Properties</h5>
-      <div>List length: {{pageEvent.length}}</div>
-      <div>Page size: {{pageEvent.pageSize}}</div>
-      <div>Page index: {{pageEvent.pageIndex}}</div>
+    <div *ngIf="searchResutData.length > 0 || pageEvent">
       <mat-table [dataSource]="searchResutData" class="mat-elevation-z8">
-        <!-- Panel Column -->
-        <ng-container matColumnDef="panelName">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.panelName}} </mat-cell>
+        <ng-container matColumnDef="recallId">
+          <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.recallId}} </mat-cell>
         </ng-container>
-        <!-- Title Column -->
         <ng-container matColumnDef="title">
           <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
         </ng-container>
-        <!-- text Column -->
-        <ng-container matColumnDef="text">
-          <mat-header-cell *matHeaderCellDef> Content </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.text}} </mat-cell>
+        <ng-container matColumnDef="department">
+          <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="date_published">
+          <mat-header-cell *matHeaderCellDef> Publication </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.date_published}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="pageurl">
+          <mat-header-cell *matHeaderCellDef> Link </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.pageurl}} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="searchColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: searchColumns;"></mat-row>
       </mat-table>
+      <mat-paginator [length]="length" [pageSize]="pageSize"
+        (page)="pageEvent = $event; doSearch()">
+      </mat-paginator>
     </div>
-    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-      (page)="pageEvent = $event">
-    </mat-paginator>
-    <pre>{{ searchResutData | json }}</pre>
   </div>
 </div>
