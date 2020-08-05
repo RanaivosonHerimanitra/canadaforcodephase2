@@ -23,6 +23,7 @@
   </div>
   <div class="row center-row">
     <app-spinner *ngIf="isLoading"></app-spinner>
+    <div class="danger" *ngIf="searchError">Error, try again</div>
     <div *ngIf="searchResutData.length > 0 || pageEvent">
       <mat-table [dataSource]="searchResutData" class="mat-elevation-z8">
         <ng-container matColumnDef="recallId">

@@ -21,6 +21,7 @@ export class RecallSearchComponent implements OnInit {
   // MatPaginator Output
   pageEvent: PageEvent;
   private currentPage = 0;
+  public searchError: any;
   // should be interfaced
   public searchParams = {search: '', lang: 'en', cat: '', offset: 0};
   public searchResults$: Observable<HealthRecallContent>;
@@ -38,21 +39,32 @@ export class RecallSearchComponent implements OnInit {
 
   doSearch(): void {
     this.isLoading = true;
-    if (this.pageEvent) { this.searchParams.offset = this.pageOffset; }
-    console.log(this.pageEvent);
+    if (this.pageEvent) {
+      // previous
+      if (this.pageEvent.previousPageIndex && this.pageEvent.pageIndex < this.pageEvent.previousPageIndex) {
+        this.searchParams.offset -= this.pageSize;
+      } else {
+        // next
+        this.searchParams.offset += this.pageSize;
+      }
+    }
     this.recallService.searchRecall(this.searchParams).subscribe({
         next: (data) => {
+          this.searchError = undefined;
           // tslint:disable-next-line: no-string-literal
           this.searchResutData = data['results'];
           // tslint:disable-next-line: no-string-literal
           this.length = data['results_count'];
           this.pageSize =  this.searchResutData.length;
-          this.pageOffset += this.pageSize;
           // tslint:disable-next-line: no-string-literal
           this.pageSizeOptions = [...Array(data['results_count']).keys()];
           this.isLoading = false;
          },
-        error: (err) => console.log(err),
+        error: (err) => {
+          this.searchResutData = undefined;
+          this.isLoading = false;
+          this.searchError = err;
+        },
         complete: () => console.log('completed!')
       });
   }
