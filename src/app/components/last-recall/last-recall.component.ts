@@ -26,7 +26,7 @@ export class LastRecallComponent implements OnInit {
       next: (data) => setTimeout(() => {
         this.data = data;
         this.isLoading = false;
-      }, 3000),
+      }, 1000),
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('completed'),
     });
