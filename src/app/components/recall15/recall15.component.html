@@ -1,0 +1,16 @@
+
+ <div *ngIf="recall15data">
+  <mat-table [dataSource]="recall15data['ALL']" class="mat-elevation-z8">
+    <ng-container matColumnDef="categoryDescription">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.categoryDescription}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+ </div>
+

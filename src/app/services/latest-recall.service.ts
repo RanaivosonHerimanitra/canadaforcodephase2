@@ -5,11 +5,12 @@ import { catchError, retry } from 'rxjs/operators';
 export const LATEST_RECALL = 'https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/recent/en';
 export const BASE_URL = 'https://healthycanadians.gc.ca/recall-alert-rappel-avis/api/';
 export interface HealthRecallContent {
-  recallId: string;
+  recallId?: string;
   title: string;
-  category: string[];
-  date_published: number;
-  url: string;
+  category?: string[];
+  categoryDescription?: string;
+  date_published?: number;
+  url?: string;
   department?: string;
   date?: string;
 }
@@ -21,6 +22,11 @@ export interface HealthRecall {
   HEALTH: HealthRecallContent[];
   CPS: HealthRecallContent[];
 }
+
+export interface HealthRecallView {
+  ALL: HealthRecallContent[];
+}
+
 
 export interface Panel {
   panelName: string;
@@ -45,6 +51,10 @@ export interface HealthRecallDetail {
 })
 export class LatestRecallService {
   constructor(private http: HttpClient) { }
+
+  public getLatestRecall15Service(): Observable<HealthRecallView> {
+    return this.http.get<HealthRecallView>(LATEST_RECALL);
+  }
 
   public getLastHealthRecall(): Observable<HealthRecall> {
     return this.http.get<HealthRecall>(LATEST_RECALL);

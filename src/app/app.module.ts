@@ -17,6 +17,8 @@ import { TopMostRecallComponent } from './components/top-most-recall/top-most-re
 import { LastRecallDetailsComponent } from './components/last-recall-details/last-recall-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecallSearchComponent } from './components/recall-search/recall-search.component';
+import { InstantRecallSearchComponent } from './components/instant-recall-search/instant-recall-search.component';
+import { Recall15Component } from './components/recall15/recall15.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RecallSearchComponent } from './components/recall-search/recall-search.
     SpinnerComponent,
     TopMostRecallComponent,
     LastRecallDetailsComponent,
-    RecallSearchComponent
+    RecallSearchComponent,
+    InstantRecallSearchComponent,
+    Recall15Component
   ],
   imports: [
     BrowserModule,
